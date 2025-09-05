@@ -38,7 +38,7 @@ export default function AboutUs() {
   // Stats with icons
   const stats = [
     { number: '3+', label: 'Years Experience', icon: '🎯' },
-    { number: '00+', label: 'Clients Worldwide', icon: '🌎' },
+    { number: '50+', label: 'Clients Worldwide', icon: '🌎' },
     { number: '95%', label: 'Client Retention', icon: '💫' },
     { number: '5+', label: 'Countries Served', icon: '🚀' }
   ];
