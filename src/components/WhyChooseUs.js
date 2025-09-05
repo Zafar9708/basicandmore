@@ -54,7 +54,7 @@ export default function WhyChooseUs() {
           <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 font-medium text-sm mb-6">
             <i className="fas fa-star mr-2"></i> WHY CHOOSE US
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why GlobalTrade Nexus Stands Out</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Box and Bag (Trade Nexus) Stands Out</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover the competitive advantages that make us the preferred partner for import and export businesses
           </p>
