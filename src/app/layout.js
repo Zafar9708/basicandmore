@@ -11,8 +11,8 @@ export const metadata = {
   keywords: 'Atlabb, accounting services, bookkeeping, tax preparation, financial consulting, business advisory',
   robots: 'index, follow',
   openGraph: {
-    title: 'Digital India Tech - Professional Tech Solutions',
-    description: 'Expert accounting services for businesses of all sizes',
+    title: 'TradeNexus - Gloabl Trade Solutions',
+    description: 'Expert Export/import services for businesses of all sizes',
     url: 'https://atlabb-accounting.com',
     siteName: 'Atlabb Accounting',
     type: 'website',
