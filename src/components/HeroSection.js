@@ -29,7 +29,7 @@ export default function HeroSection() {
       }, interval);
     };
 
-    animateValue(setYears, 12, duration);
+    animateValue(setYears, 4, duration);
     animateValue(setCountries, 48, duration);
     animateValue(setClients, 350, duration);
     animateValue(setProducts, 1200, duration);
