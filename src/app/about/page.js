@@ -37,10 +37,10 @@ export default function AboutUs() {
 
   // Stats with icons
   const stats = [
-    { number: '12+', label: 'Years Experience', icon: '🎯' },
-    { number: '500+', label: 'Clients Worldwide', icon: '🌎' },
+    { number: '3+', label: 'Years Experience', icon: '🎯' },
+    { number: '00+', label: 'Clients Worldwide', icon: '🌎' },
     { number: '95%', label: 'Client Retention', icon: '💫' },
-    { number: '60+', label: 'Countries Served', icon: '🚀' }
+    { number: '5+', label: 'Countries Served', icon: '🚀' }
   ];
 
   // Process steps
@@ -131,7 +131,7 @@ export default function AboutUs() {
               <div className="relative z-10 bg-white p-8 rounded-xl shadow-lg">
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Journey</h2>
                 <p className="text-gray-600 mb-4">
-                  Founded in 2022, TradeNexus began with a vision to democratize international trade 
+                  Founded in 2022, Baox and Bag(TradeNexus) began with a vision to democratize international trade 
                   for businesses of all sizes. What started as a small consultancy has grown into a comprehensive 
                   trade solutions provider serving clients across the globe.
                 </p>

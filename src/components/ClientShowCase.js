@@ -67,9 +67,9 @@ export default function GlobalImpact() {
   ];
 
   const globalStats = [
-    { value: "48+", label: "Countries Served", icon: "fas fa-globe-americas" },
-    { value: "12+", label: "Years Experience", icon: "fas fa-calendar-alt" },
-    { value: "350+", label: "Successful Projects", icon: "fas fa-chart-line" },
+    { value: "5+", label: "Countries Served", icon: "fas fa-globe-americas" },
+    { value: "3+", label: "Years Experience", icon: "fas fa-calendar-alt" },
+    { value: "50+", label: "Successful Projects", icon: "fas fa-chart-line" },
     { value: "99.7%", label: "On-Time Delivery", icon: "fas fa-shipping-fast" }
   ];
 
@@ -194,11 +194,11 @@ export default function GlobalImpact() {
               <h4 className="text-lg font-semibold text-gray-800 mb-4">Industry Impact</h4>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-blue-50 rounded-lg p-3 text-center">
-                  <div className="text-blue-600 font-bold">48+</div>
+                  <div className="text-blue-600 font-bold">5+</div>
                   <div className="text-xs text-gray-600">Countries Reached</div>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-3 text-center">
-                  <div className="text-blue-600 font-bold">12+</div>
+                  <div className="text-blue-600 font-bold">3+</div>
                   <div className="text-xs text-gray-600">Industries Served</div>
                 </div>
               </div>

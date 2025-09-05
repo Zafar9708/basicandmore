@@ -6,12 +6,12 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata = {
-  title: 'TradeNexus - Gloabl Trade Solutions',
-  description: 'Atlabb Accounting provides comprehensive financial services including bookkeeping, tax preparation, financial consulting, and strategic business advisory.',
-  keywords: 'Atlabb, accounting services, bookkeeping, tax preparation, financial consulting, business advisory',
+  title: 'Box&Bag - Gloabl Trade Solutions',
+  description: 'Box&Bag  provides comprehensive financial services including bookkeeping, tax preparation, financial consulting, and strategic business advisory.',
+  keywords: 'Box&Bag, trading services, bookkeeping, tax preparation, financial consulting, business advisory',
   robots: 'index, follow',
   openGraph: {
-    title: 'TradeNexus - Gloabl Trade Solutions',
+    title: 'Box&Bag - Gloabl Trade Solutions',
     description: 'Expert Export/import services for businesses of all sizes',
     url: 'https://atlabb-accounting.com',
     siteName: 'Atlabb Accounting',

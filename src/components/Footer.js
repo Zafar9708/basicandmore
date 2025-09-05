@@ -1,5 +1,9 @@
+
+
+
+
 // import Link from 'next/link';
-// import { FaWhatsapp } from 'react-icons/fa';
+// import { FaWhatsapp, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaWarehouse, FaPhone, FaEnvelope, FaFileContract, FaBuilding, FaCalendarAlt, FaChevronRight } from 'react-icons/fa';
 
 // export default function Footer() {
 //   return (
@@ -11,25 +15,25 @@
 //           <div className="lg:col-span-1">
 //             <div className="flex items-center mb-6">
 //               <div className="h-10 w-10 rounded-md bg-blue-600 flex items-center justify-center mr-3">
-//                 <span className="text-white font-bold text-lg">TN</span>
+//                 <span className="text-white font-bold text-lg">BB</span>
 //               </div>
-//               <span className="text-xl font-semibold text-blue-800">TradeNexus</span>
+//               <span className="text-xl font-semibold text-blue-800">Box&Bag(TradeNexus)</span>
 //             </div>
 //             <p className="text-gray-600 mb-6">
 //               Your trusted partner for all import and export needs. We connect markets across the globe with precision and expertise.
 //             </p>
 //             <div className="flex space-x-4">
-//               <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
-//                 <i className="fab fa-facebook-f"></i>
+//               <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
+//                 <FaFacebookF size={14} />
 //               </a>
 //               <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
-//                 <i className="fab fa-twitter"></i>
+//                 <FaTwitter size={14} />
 //               </a>
 //               <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
-//                 <i className="fab fa-linkedin-in"></i>
+//                 <FaLinkedinIn size={14} />
 //               </a>
 //               <a href="#" className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">
-//                 <i className="fab fa-instagram"></i>
+//                 <FaInstagram size={14} />
 //               </a>
 //             </div>
 //           </div>
@@ -43,31 +47,31 @@
 //             <ul className="space-y-3">
 //               <li>
 //                 <Link href="/" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Home
 //                 </Link>
 //               </li>
 //               <li>
 //                 <Link href="/about" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   About Us
 //                 </Link>
 //               </li>
 //               <li>
 //                 <Link href="/services" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Services
 //                 </Link>
 //               </li>
 //               <li>
 //                 <Link href="/products" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Products
 //                 </Link>
 //               </li>
 //               <li>
 //                 <Link href="/contact" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Contact Us
 //                 </Link>
 //               </li>
@@ -83,31 +87,31 @@
 //             <ul className="space-y-3">
 //               <li>
 //                 <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Import/Export Solutions
 //                 </a>
 //               </li>
 //               <li>
 //                 <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Logistics & Shipping
 //                 </a>
 //               </li>
 //               <li>
 //                 <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Customs Clearance
 //                 </a>
 //               </li>
 //               <li>
 //                 <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Product Sourcing
 //                 </a>
 //               </li>
 //               <li>
 //                 <a href="#" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center">
-//                   <i className="fas fa-chevron-right text-xs mr-2 text-blue-500"></i>
+//                   <FaChevronRight size={10} className="mr-2 text-blue-500" />
 //                   Trade Consulting
 //                 </a>
 //               </li>
@@ -123,7 +127,7 @@
 //             <ul className="space-y-4">
 //               <li className="flex items-start">
 //                 <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4">
-//                   <i className="fas fa-map-marker-alt"></i>
+//                   <FaMapMarkerAlt size={16} />
 //                 </div>
 //                 <div>
 //                   <h4 className="font-medium text-blue-800">Registered Office</h4>
@@ -132,7 +136,7 @@
 //               </li>
 //               <li className="flex items-start">
 //                 <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4">
-//                   <i className="fas fa-warehouse"></i>
+//                   <FaWarehouse size={16} />
 //                 </div>
 //                 <div>
 //                   <h4 className="font-medium text-blue-800">Warehouse Address</h4>
@@ -141,7 +145,7 @@
 //               </li>
 //               <li className="flex items-start">
 //                 <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4">
-//                   <i className="fas fa-phone"></i>
+//                   <FaPhone size={16} />
 //                 </div>
 //                 <div>
 //                   <h4 className="font-medium text-blue-800">Call Us</h4>
@@ -150,7 +154,7 @@
 //               </li>
 //               <li className="flex items-start">
 //                 <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4">
-//                   <i className="fas fa-envelope"></i>
+//                   <FaEnvelope size={16} />
 //                 </div>
 //                 <div>
 //                   <h4 className="font-medium text-blue-800">Email Us</h4>
@@ -166,21 +170,21 @@
 //           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 //             <div className="bg-blue-50 rounded-xl p-4 text-center">
 //               <div className="text-blue-600 text-2xl mb-2">
-//                 <i className="fas fa-file-contract"></i>
+//                 <FaFileContract size={24} />
 //               </div>
 //               <h4 className="font-medium text-blue-800 mb-1">GST Registration</h4>
 //               <p className="text-gray-600 text-sm">03AALCB0115F1ZE</p>
 //             </div>
 //             <div className="bg-blue-50 rounded-xl p-4 text-center">
 //               <div className="text-blue-600 text-2xl mb-2">
-//                 <i className="fas fa-building"></i>
+//                 <FaBuilding size={24} />
 //               </div>
 //               <h4 className="font-medium text-blue-800 mb-1">Business Type</h4>
 //               <p className="text-gray-600 text-sm">Private Limited Company</p>
 //             </div>
 //             <div className="bg-blue-50 rounded-xl p-4 text-center">
 //               <div className="text-blue-600 text-2xl mb-2">
-//                 <i className="fas fa-calendar-alt"></i>
+//                 <FaCalendarAlt size={24} />
 //               </div>
 //               <h4 className="font-medium text-blue-800 mb-1">Since</h4>
 //               <p className="text-gray-600 text-sm">18th November 2022</p>
@@ -211,7 +215,7 @@
 //         {/* Bottom Footer */}
 //         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
 //           <div className="text-gray-500 text-sm mb-4 md:mb-0">
-//             <p>&copy; 2023 GlobalTrade Nexus. All rights reserved.</p>
+//             <p>&copy; 2023 Box&Bag (TradeNexus). All rights reserved.</p>
 //           </div>
 //           <div className="flex space-x-6">
 //             <a href="#" className="text-gray-500 hover:text-blue-600 text-sm transition duration-300">Privacy Policy</a>
@@ -230,9 +234,7 @@
 //           rel="noopener noreferrer"
 //           className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300"
 //         >
-//           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-//             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335 .157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.864 3.488"/>
-//           </svg>
+//           <FaWhatsapp size={24} />
 //         </a>
 //       </div>
 //     </footer>
@@ -240,9 +242,8 @@
 // }
 
 
-
 import Link from 'next/link';
-import { FaWhatsapp, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaWarehouse, FaPhone, FaEnvelope, FaFileContract, FaBuilding, FaCalendarAlt, FaChevronRight } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaWarehouse, FaPhone, FaEnvelope, FaFileContract, FaBuilding, FaCalendarAlt, FaChevronRight, FaHandshake } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -254,9 +255,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
               <div className="h-10 w-10 rounded-md bg-blue-600 flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">TN</span>
+                <span className="text-white font-bold text-lg">BB</span>
               </div>
-              <span className="text-xl font-semibold text-blue-800">TradeNexus</span>
+              <span className="text-xl font-semibold text-blue-800">Box&Bag(TradeNexus)</span>
             </div>
             <p className="text-gray-600 mb-6">
               Your trusted partner for all import and export needs. We connect markets across the globe with precision and expertise.
@@ -404,6 +405,24 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Association Section - Added Sourcing India Foundation */}
+        <div className="border-t border-gray-200 pt-8 mb-8">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-center text-white">
+            <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
+              <div className="mb-4 md:mb-0">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <FaHandshake size={24} className="text-white" />
+                </div>
+                <h3 className="text-xl font-bold">In Association With</h3>
+              </div>
+              <div className="bg-white bg-opacity-20 rounded-xl p-4 md:p-6">
+                <h4 className="text-2xl font-bold mb-2">Succoring India Foundation</h4>
+                <p className="text-blue-100">Empowering Indian businesses in global trade and export initiatives</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Business Info Section */}
         <div className="border-t border-gray-200 pt-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -454,7 +473,7 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-500 text-sm mb-4 md:mb-0">
-            <p>&copy; 2023 TradeNexus. All rights reserved.</p>
+            <p>&copy; 2025 Box&Bag (TradeNexus). All rights reserved.</p>
           </div>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-500 hover:text-blue-600 text-sm transition duration-300">Privacy Policy</a>

@@ -9,14 +9,14 @@ export default function WhyChooseUs() {
       title: "Global Network",
       icon: "fas fa-globe-americas",
       description: "With established partnerships in over 48 countries, we provide seamless import and export solutions across the globe.",
-      stats: "48+ Countries"
+      stats: "5+ Countries"
     },
     {
       id: 2,
       title: "Expert Team",
       icon: "fas fa-users",
       description: "Our team of trade experts has over 12 years of experience in international logistics, customs clearance, and supply chain management.",
-      stats: "12+ Years Experience"
+      stats: "3+ Years Experience"
     },
     {
       id: 3,
@@ -118,20 +118,20 @@ export default function WhyChooseUs() {
         {/* Stats section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="bg-white rounded-2xl p-6 text-center shadow-md border border-blue-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">48+</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">5+</div>
             <div className="text-gray-600">Countries Served</div>
           </div>
           <div className="bg-white rounded-2xl p-6 text-center shadow-md border border-blue-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">12+</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">3+</div>
             <div className="text-gray-600">Years Experience</div>
           </div>
           <div className="bg-white rounded-2xl p-6 text-center shadow-md border border-blue-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">350+</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
             <div className="text-gray-600">Happy Clients</div>
           </div>
           <div className="bg-white rounded-2xl p-6 text-center shadow-md border border-blue-100">
-            <div className="text-3xl font-bold text-blue-600 mb-2">1200+</div>
-            <div className="text-gray-600">Products Exported&Imported</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">20+</div>
+            <div className="text-gray-600">Products Exported/Imported</div>
           </div>
         </div>
         
