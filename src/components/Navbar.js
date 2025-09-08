@@ -73,16 +73,16 @@ export default function Navbar() {
           
           {/* Middle with navigation items */}
           <div className="hidden md:flex md:items-center md:space-x-4">
-            <Link href="/" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
+            <Link href="/" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               Home
             </Link>
             
-            <Link href="/about" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
+            <Link href="/about" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               About Us
             </Link>
             
             {/* New Industries Page */}
-            <Link href="/industries" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
+            <Link href="/industries" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               Industries
             </Link>
             
@@ -90,7 +90,7 @@ export default function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <button 
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium flex items-center transition duration-200"
+                className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium flex items-center transition duration-200"
               >
                 Services
                 <svg className="ml-1 h-4 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -101,19 +101,19 @@ export default function Navbar() {
               {isServicesOpen && (
                 <div className="absolute z-50 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div className="py-1" role="menu" aria-orientation="vertical">
-                    <Link href="/services/import-export" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
+                    <Link href="/services/import-export" className="block px-4 py-2 text-sm text-gray-950 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
                       Import/Export Solutions
                     </Link>
-                    <Link href="/services/logistics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
+                    <Link href="/services/logistics" className="block px-4 py-2 text-sm text-gray-950 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
                       Logistics & Shipping
                     </Link>
-                    <Link href="/services/customs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
+                    <Link href="/services/customs" className="block px-4 py-2 text-sm text-gray-950 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
                       Customs Clearance
                     </Link>
-                    <Link href="/services/sourcing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
+                    <Link href="/services/sourcing" className="block px-4 py-2 text-sm text-gray-950 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
                       Product Sourcing
                     </Link>
-                    <Link href="/services/consulting" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
+                    <Link href="/services/consulting" className="block px-4 py-2 text-sm text-gray-950 hover:bg-blue-50 hover:text-blue-600 transition duration-150" role="menuitem">
                       Trade Consulting
                     </Link>
                   </div>
@@ -121,7 +121,7 @@ export default function Navbar() {
               )}
             </div>
             
-            <Link href="/contact" className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
+            <Link href="/contact" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               Contact Us
             </Link>
           </div>
@@ -154,15 +154,15 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+            <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               Home
             </Link>
-            <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+            <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               About Us
             </Link>
             
             {/* New Industries Page in mobile */}
-            <Link href="/industries" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+            <Link href="/industries" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               Industries
             </Link>
             
@@ -170,7 +170,7 @@ export default function Navbar() {
             <div>
               <button 
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200"
+                className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200"
               >
                 <span>Services</span>
                 <svg 
@@ -185,26 +185,26 @@ export default function Navbar() {
               
               {isMobileServicesOpen && (
                 <div className="pl-5 space-y-1 mt-1">
-                  <Link href="/services/import-export" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+                  <Link href="/services/import-export" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
                     Import/Export Solutions
                   </Link>
-                  <Link href="/services/logistics" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+                  <Link href="/services/logistics" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
                     Logistics & Shipping
                   </Link>
-                  <Link href="/services/customs" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+                  <Link href="/services/customs" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
                     Customs Clearance
                   </Link>
-                  <Link href="/services/sourcing" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+                  <Link href="/services/sourcing" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
                     Product Sourcing
                   </Link>
-                  <Link href="/services/consulting" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+                  <Link href="/services/consulting" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
                     Trade Consulting
                   </Link>
                 </div>
               )}
             </div>
             
-            <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
+            <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               Contact Us
             </Link>
             <div className="pt-2">
