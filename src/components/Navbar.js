@@ -62,33 +62,36 @@ export default function Navbar() {
               <div className="h-20 w-20 relative">
                 <Image
                   src="/Box&Bag.png" // Path to your logo in the public folder
-                  alt="TradeNexus Logo"
+                  alt="Box&Bag Logo"
                   fill
                   className="object-contain"
                 />
               </div>
-              {/* <span className="ml-2 text-xl font-semibold text-gray-800">TradeNexus</span> */}
+              <span className="ml-3 text-lg sm:text-xl font-semibold text-gray-800 whitespace-nowrap">
+                Box&Bag Pvt.Ltd
+              </span>
             </Link>
+
           </div>
-          
+
           {/* Middle with navigation items */}
           <div className="hidden md:flex md:items-center md:space-x-4">
             <Link href="/" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               Home
             </Link>
-            
+
             <Link href="/about" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               About Us
             </Link>
-            
+
             {/* New Industries Page */}
             <Link href="/industries" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               Industries
             </Link>
-            
+
             {/* Services Dropdown - Fixed z-index issue */}
             <div className="relative" ref={dropdownRef}>
-              <button 
+              <button
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
                 className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium flex items-center transition duration-200"
               >
@@ -97,7 +100,7 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
+
               {isServicesOpen && (
                 <div className="absolute z-50 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div className="py-1" role="menu" aria-orientation="vertical">
@@ -120,25 +123,25 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            
+
             <Link href="/contact" className="text-gray-950 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-200">
               Contact Us
             </Link>
           </div>
-          
+
           {/* Right side with CTA button */}
           <div className="hidden md:flex md:items-center">
-            <button 
+            <button
               onClick={scrollToContact}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300"
             >
               Get Quote
             </button>
           </div>
-          
+
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-blue-600 focus:outline-none transition duration-200"
             >
@@ -149,7 +152,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile menu, show/hide based on menu state */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
@@ -160,29 +163,29 @@ export default function Navbar() {
             <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               About Us
             </Link>
-            
+
             {/* New Industries Page in mobile */}
             <Link href="/industries" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               Industries
             </Link>
-            
+
             {/* Services section in mobile with toggle */}
             <div>
-              <button 
+              <button
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                 className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200"
               >
                 <span>Services</span>
-                <svg 
-                  className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
+
               {isMobileServicesOpen && (
                 <div className="pl-5 space-y-1 mt-1">
                   <Link href="/services/import-export" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
@@ -203,12 +206,12 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            
+
             <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-950 hover:text-blue-600 hover:bg-blue-50 transition duration-200">
               Contact Us
             </Link>
             <div className="pt-2">
-              <button 
+              <button
                 onClick={scrollToContact}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-base font-medium transition duration-300"
               >
