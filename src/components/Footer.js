@@ -398,7 +398,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <h4 className="font-medium text-blue-800">Email Us</h4>
-                  <a href="mailto:Boxandbagretailindia@gmail.com" className="text-blue-600 hover:text-blue-800">Boxandbagretailindia@gmail.com</a>
+                  <a href="mailto:Boxandbagretailindia@gmail.com" className="text-blue-600 hover:text-blue-800">nutanmakkaar@boxandbag.co.in</a>
                 </div>
               </li>
             </ul>

@@ -68,7 +68,7 @@ export default function Navbar() {
                 />
               </div>
               <span className="ml-3 text-lg sm:text-xl font-semibold text-gray-800 whitespace-nowrap">
-                Box&Bag Pvt.Ltd
+                box&bag Pvt.Ltd
               </span>
             </Link>
 

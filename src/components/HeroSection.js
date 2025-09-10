@@ -315,7 +315,8 @@ export default function HeroSection() {
                     </div>
                     <div className="bg-white bg-opacity-15 p-6 rounded-xl border border-white border-opacity-20 transition duration-300 hover:bg-opacity-25">
                       <div className="text-4xl font-bold text-yellow-300 mb-2">{products}+</div>
-                      <div className="text-blue-100">Products Exported/Imported</div>
+                      <div className="text-blue-100">Products Exported/
+                        <br></br>Imported</div>
                     </div>
                   </div>
                   
