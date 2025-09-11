@@ -77,7 +77,7 @@ export default function ContactUs() {
                   <div>
                     <h4 className="font-medium text-white">Email Us</h4>
                     <a href="mailto:Boxandbagretailindia@gmail.com" className="text-blue-100 hover:text-white">
-                      Boxandbagretailindia@gmail.com
+                      nutanmakkaar@boxandbag.co.in
                     </a>
                   </div>
                 </div>
