@@ -1,324 +1,528 @@
 "use client"
 import { useState } from 'react';
 
-export default function AboutUs() {
-  const [activeValue, setActiveValue] = useState(0);
+export default function ContactUs() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    productInterest: '',
+    quantity: '',
+    message: ''
+  });
+  
+  const [activeContact, setActiveContact] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Values data
-  const values = [
+  const contactMethods = [
     {
-      title: "Integrity First",
-      description: "We build trust through transparency, honesty, and ethical business practices in all our relationships.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      )
+      icon: 'fas fa-phone',
+      title: 'Call Us',
+      details: '+971 4 123 4567',
+      description: 'Speak directly with our trading experts',
+      timing: 'Mon-Fri: 8:00 AM - 6:00 PM GST',
+      color: 'from-green-500 to-emerald-500',
+      action: 'tel:+97141234567'
     },
     {
-      title: "Global Excellence",
-      description: "We deliver exceptional service quality and innovative solutions across international markets.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      )
+      icon: 'fas fa-envelope',
+      title: 'Email Us',
+      details: 'basicandmoreinc@gmail.com',
+      description: 'Get detailed quotes and product information',
+      timing: 'Response within 2 hours',
+      color: 'from-blue-500 to-cyan-500',
+      action: 'mailto:basicandmoreinc@gmail.com'
     },
     {
-      title: "Collaborative Partnership",
-      description: "We work as an extension of your team, building long-term relationships based on mutual success.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      )
+      icon: 'fas fa-map-marker-alt',
+      title: 'Visit Us',
+      details: 'Trade Center District',
+      description: 'Dubai, United Arab Emirates',
+      timing: 'By appointment',
+      color: 'from-orange-500 to-amber-500',
+      action: '#'
+    },
+    {
+      icon: 'fab fa-whatsapp',
+      title: 'WhatsApp',
+      details: '+971 55 123 4567',
+      description: 'Quick queries and instant support',
+      timing: '24/7 for urgent matters',
+      color: 'from-green-400 to-green-600',
+      action: 'https://wa.me/971551234567'
     }
   ];
 
-  // Stats with icons
-  const stats = [
-    { number: '3+', label: 'Years Experience', icon: '🎯' },
-    { number: '50+', label: 'Clients Worldwide', icon: '🌎' },
-    { number: '95%', label: 'Client Retention', icon: '💫' },
-    { number: '5+', label: 'Countries Served', icon: '🚀' }
+  const productInterests = [
+    'Food Products & Grains',
+    'Beverages & Drinks',
+    'Household Goods',
+    'Personal Care Items',
+    'Daily Consumables',
+    'Custom Product Sourcing'
   ];
 
-  // Process steps
-  const processSteps = [
+  const globalOffices = [
     {
-      title: "Consultation & Strategy",
-      description: "We begin by understanding your business goals and developing a customized trade strategy.",
-      icon: "📋"
+      country: 'UAE',
+      city: 'Dubai',
+      flag: '🇦🇪',
+      address: 'Trade Center District, Dubai',
+      phone: '+971 4 123 4567',
+      email: 'dubai@basicandmoreinc.com'
     },
     {
-      title: "Implementation & Execution",
-      description: "Our experts handle all logistics, documentation, and compliance requirements for seamless execution.",
-      icon: "⚡"
+      country: 'Saudi Arabia',
+      city: 'Riyadh',
+      flag: '🇸🇦',
+      address: 'Business Bay, Riyadh',
+      phone: '+966 11 123 4567',
+      email: 'riyadh@basicandmoreinc.com'
     },
     {
-      title: "Ongoing Optimization",
-      description: "We continuously monitor and optimize your trade operations for maximum efficiency and cost savings.",
-      icon: "📊"
+      country: 'Singapore',
+      city: 'Singapore',
+      flag: '🇸🇬',
+      address: 'Raffles Place, Singapore',
+      phone: '+65 6123 4567',
+      email: 'singapore@basicandmoreinc.com'
     },
     {
-      title: "Growth & Expansion",
-      description: "We help you identify new market opportunities and scale your international presence.",
-      icon: "🌱"
+      country: 'India',
+      city: 'Mumbai',
+      flag: '🇮🇳',
+      address: 'Bandra Kurla Complex, Mumbai',
+      phone: '+91 22 1234 5678',
+      email: 'mumbai@basicandmoreinc.com'
     }
   ];
 
-  // Client success stories
-  const successStories = [
-    {
-      company: "EcoTech Solutions",
-      challenge: "Needed to navigate complex EU regulatory requirements for electronics",
-      solution: "Full compliance management and customs clearance services",
-      result: "40% reduction in customs delays and 25% cost savings"
-    },
-    {
-      company: "Global Fabrics Inc.",
-      challenge: "Required efficient multi-modal transportation for textile imports",
-      solution: "Custom logistics solution combining sea and rail transport",
-      result: "30% faster delivery times and 15% lower shipping costs"
-    },
-    {
-      company: "Premium Foods LLC",
-      challenge: "Struggled with perishable goods import documentation",
-      solution: "End-to-end documentation and cold chain logistics management",
-      result: "Zero shipment rejections and 99% on-time delivery rate"
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Email content (in real app, this would go to your backend)
+      const emailContent = `
+        New Contact Request - Basic and More Inc
+        
+        Name: ${formData.name}
+        Email: ${formData.email}
+        Phone: ${formData.phone}
+        Company: ${formData.company}
+        Product Interest: ${formData.productInterest}
+        Estimated Quantity: ${formData.quantity}
+        
+        Message:
+        ${formData.message}
+      `;
+
+      console.log('Email to: basicandmoreinc@gmail.com');
+      console.log('Content:', emailContent);
+
+      setIsSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        productInterest: '',
+        quantity: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
-  ];
+  };
 
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
-      {/* Hero Section with animated gradient */}
-      <section className="relative py-24 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-soft-light filter blur-3xl opacity-30 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-soft-light filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-8 left-20 w-72 h-72 bg-blue-800 rounded-full mix-blend-soft-light filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
         </div>
-        
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Redefining <span className="text-blue-200">Global Trade</span>
-          </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto font-light">
-            Connecting businesses across borders with innovative and seamless trade solutions since 2012
-          </p>
-          <div className="mt-10">
-            <div className="inline-flex rounded-md shadow">
-              <button className="inline-flex items-center justify-center px-6 py-4 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 transition">
-                Explore Our Services
-                <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Story Section with diagonal separator */}
-      <section className="relative py-20">
-        <div className="absolute top-0 left-0 w-full h-24 bg-blue-600 -skew-y-2 transform origin-top-left -z-10"></div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-100 rounded-lg z-0"></div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-600 rounded-lg z-0"></div>
-              <div className="relative z-10 bg-white p-8 rounded-xl shadow-lg">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Journey</h2>
-                <p className="text-gray-600 mb-4">
-                  Founded in 2022, Box and Bag(TradeNexus) began with a vision to democratize international trade 
-                  for businesses of all sizes. What started as a small consultancy has grown into a comprehensive 
-                  trade solutions provider serving clients across the globe.
-                </p>
-                <p className="text-gray-600">
-                  Today, we leverage our extensive network of partners, deep industry knowledge, and cutting-edge 
-                  technology to simplify complex trade processes, reduce costs, and eliminate barriers for our clients.
-                </p>
-              </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="inline-flex items-center px-6 py-3 bg-white rounded-full shadow-lg border border-orange-100 mb-6">
+              <div className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+              <span className="text-orange-700 font-semibold text-sm uppercase tracking-wide">
+                Get In Touch
+              </span>
             </div>
             
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <div key={index} className="bg-blue-600 text-white p-6 rounded-xl text-center transform transition duration-300 hover:-translate-y-2">
-                  <div className="text-3xl mb-2">{stat.icon}</div>
-                  <div className="text-3xl font-bold mb-1">{stat.number}</div>
-                  <div className="text-blue-100">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section with interactive cards */}
-      <section className="py-20 bg-blue-50 relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Our Core Values</h2>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16">
-            The principles that guide everything we do at GlobalTrade Nexus
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((value, index) => (
-              <div 
-                key={index}
-                className={`bg-white rounded-xl p-8 shadow-md transition-all duration-300 transform hover:-translate-y-2 cursor-pointer ${activeValue === index ? 'ring-4 ring-blue-500' : ''}`}
-                onMouseEnter={() => setActiveValue(index)}
-              >
-                <div className="text-blue-600 mb-6">{value.icon}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Process Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Our Proven Process</h2>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16">
-            A structured approach to ensuring your global trade success
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => (
-              <div key={index} className="group relative text-center">
-                <div className="relative mb-6">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full text-2xl transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white">
-                    {step.icon}
-                  </div>
-                  <div className="absolute top-0 right-0 flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full text-sm font-bold">
-                    {index + 1}
-                  </div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-                
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-1/2 w-full h-0.5 bg-blue-200 transform translate-x-16 -translate-y-8"></div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories Section */}
-      <section className="py-20 bg-blue-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Client Success Stories</h2>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16">
-            How we've helped businesses overcome challenges and achieve global growth
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {successStories.map((story, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md transition-transform duration-300 hover:-translate-y-2">
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-blue-600">{story.company}</h3>
-                </div>
-                
-                <div className="mb-4">
-                  <h4 className="font-semibold text-gray-800 mb-1">Challenge</h4>
-                  <p className="text-gray-600 text-sm">{story.challenge}</p>
-                </div>
-                
-                <div className="mb-4">
-                  <h4 className="font-semibold text-gray-800 mb-1">Our Solution</h4>
-                  <p className="text-gray-600 text-sm">{story.solution}</p>
-                </div>
-                
-                <div className="p-3 bg-blue-100 rounded-lg">
-                  <h4 className="font-semibold text-blue-700 mb-1">Result</h4>
-                  <p className="text-blue-600 text-sm font-medium">{story.result}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Global Presence Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Global Reach, Local Expertise</h2>
-            <p className="text-blue-100 max-w-2xl mx-auto">
-              With operations spanning six continents, we combine global capabilities with local market knowledge
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Let's Start Your
+              <span className="block bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+                Trading Journey
+              </span>
+            </h1>
+            
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Ready to source quality products? Contact us today for personalized trading solutions, 
+              competitive quotes, and expert guidance for your business needs.
             </p>
           </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="p-6">
-              <div className="text-4xl mb-4">🌍</div>
-              <h3 className="text-xl font-semibold mb-2">Americas</h3>
-              <p className="text-blue-200">North, Central & South America</p>
+        </div>
+      </section>
+
+      {/* Contact Methods Grid */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {contactMethods.map((method, index) => (
+              <div 
+                key={index}
+                className={`bg-white rounded-2xl p-6 shadow-lg border border-orange-100 cursor-pointer transition-all duration-300 ${
+                  activeContact === index ? 'ring-2 ring-orange-500 transform scale-105' : 'hover:shadow-xl'
+                }`}
+                onClick={() => setActiveContact(index)}
+              >
+                <div className={`bg-gradient-to-r ${method.color} w-14 h-14 rounded-2xl flex items-center justify-center mb-4`}>
+                  <i className={`${method.icon} text-white text-xl`}></i>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{method.title}</h3>
+                <p className="text-gray-900 font-medium mb-1">{method.details}</p>
+                <p className="text-gray-600 text-sm mb-2">{method.description}</p>
+                <p className="text-orange-500 text-xs font-medium">{method.timing}</p>
+                <a 
+                  href={method.action}
+                  className="inline-block mt-3 text-orange-600 hover:text-orange-700 text-sm font-medium"
+                >
+                  Contact via {method.title.toLowerCase()} →
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-orange-100">
+                {isSubmitted ? (
+                  <div className="text-center py-12">
+                    <div className="bg-green-100 text-green-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                      <i className="fas fa-check text-3xl"></i>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
+                    <p className="text-gray-600 mb-4">Your message has been sent successfully.</p>
+                    <p className="text-gray-500 text-sm mb-6">We'll get back to you within 2 hours during business days.</p>
+                    <button
+                      onClick={() => setIsSubmitted(false)}
+                      className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-amber-600 transition duration-300"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Send Your Inquiry</h2>
+                    <p className="text-gray-600 mb-6">Fill out the form below and we'll provide you with a detailed quote</p>
+                    
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name *
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                            placeholder="Your full name"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address *
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                            placeholder="your@email.com"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number *
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                            placeholder="+971 XX XXX XXXX"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Company Name
+                          </label>
+                          <input
+                            type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                            placeholder="Your company name"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Product Interest *
+                          </label>
+                          <select
+                            name="productInterest"
+                            value={formData.productInterest}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                          >
+                            <option value="">Select product category</option>
+                            {productInterests.map((interest, index) => (
+                              <option key={index} value={interest}>{interest}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Estimated Quantity
+                          </label>
+                          <input
+                            type="text"
+                            name="quantity"
+                            value={formData.quantity}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                            placeholder="e.g., 1000 units, 5 tons per month"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Your Requirements *
+                        </label>
+                        <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          rows={6}
+                          className="w-full px-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-300"
+                          placeholder="Tell us about your product requirements, specifications, quality standards, and any other details..."
+                        ></textarea>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white py-4 rounded-lg font-semibold text-lg hover:from-orange-600 hover:to-amber-600 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center justify-center">
+                            <i className="fas fa-spinner fa-spin mr-2"></i>
+                            Sending Your Inquiry...
+                          </span>
+                        ) : (
+                          <span className="flex items-center justify-center">
+                            <i className="fas fa-paper-plane mr-2"></i>
+                            Get Quote & Consultation
+                          </span>
+                        )}
+                      </button>
+                    </form>
+                  </>
+                )}
+              </div>
             </div>
-            <div className="p-6">
-              <div className="text-4xl mb-4">🗼</div>
-              <h3 className="text-xl font-semibold mb-2">Europe</h3>
-              <p className="text-blue-200">EU, UK and Eastern Europe</p>
+
+            {/* Sidebar Information */}
+            <div className="space-y-6">
+              {/* Quick Response */}
+              <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 text-white">
+                <div className="flex items-center mb-4">
+                  <i className="fas fa-bolt text-2xl mr-3"></i>
+                  <h3 className="text-xl font-bold">Quick Response Guarantee</h3>
+                </div>
+                <ul className="space-y-2 text-orange-100">
+                  <li className="flex items-center">
+                    <i className="fas fa-check mr-2"></i>
+                    <span>Response within 2 hours</span>
+                  </li>
+                  <li className="flex items-center">
+                    <i className="fas fa-check mr-2"></i>
+                    <span>Detailed quotes in 24 hours</span>
+                  </li>
+                  <li className="flex items-center">
+                    <i className="fas fa-check mr-2"></i>
+                    <span>Dedicated account manager</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Global Offices */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-orange-100">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Global Offices</h3>
+                <div className="space-y-4">
+                  {globalOffices.map((office, index) => (
+                    <div key={index} className="flex items-start">
+                      <span className="text-2xl mr-3">{office.flag}</span>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{office.city}, {office.country}</h4>
+                        <p className="text-sm text-gray-600">{office.address}</p>
+                        <p className="text-sm text-orange-600">{office.phone}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why Contact Us */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-orange-100">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Contact Us?</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center">
+                    <div className="bg-orange-100 text-orange-600 rounded-lg p-2 mr-3">
+                      <i className="fas fa-tag"></i>
+                    </div>
+                    <span className="text-sm text-gray-600">Competitive wholesale pricing</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="bg-orange-100 text-orange-600 rounded-lg p-2 mr-3">
+                      <i className="fas fa-award"></i>
+                    </div>
+                    <span className="text-sm text-gray-600">Quality guaranteed products</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="bg-orange-100 text-orange-600 rounded-lg p-2 mr-3">
+                      <i className="fas fa-shipping-fast"></i>
+                    </div>
+                    <span className="text-sm text-gray-600">Global logistics support</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="bg-orange-100 text-orange-600 rounded-lg p-2 mr-3">
+                      <i className="fas fa-handshake"></i>
+                    </div>
+                    <span className="text-sm text-gray-600">Long-term partnership approach</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="p-6">
-              <div className="text-4xl mb-4">🏯</div>
-              <h3 className="text-xl font-semibold mb-2">Asia</h3>
-              <p className="text-blue-200">East Asia, Southeast Asia, and India</p>
-            </div>
-            <div className="p-6">
-              <div className="text-4xl mb-4">🐪</div>
-              <h3 className="text-xl font-semibold mb-2">Middle East & Africa</h3>
-              <p className="text-blue-200">GCC, North Africa, and Sub-Saharan Africa</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl shadow-xl p-8 border border-orange-100">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Global Presence</h2>
+                <p className="text-gray-600 mb-6">
+                  With offices and partners across multiple continents, we're positioned to serve 
+                  your international trading needs efficiently and effectively.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-orange-600">12+</div>
+                    <div className="text-gray-600">Countries</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-amber-600">50+</div>
+                    <div className="text-gray-600">Cities Covered</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-orange-500">200+</div>
+                    <div className="text-gray-600">Partners</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-amber-500">8+</div>
+                    <div className="text-gray-600">Years Experience</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-orange-100 to-amber-100 rounded-2xl h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-globe-americas text-6xl text-orange-500 mb-4"></i>
+                  <p className="text-gray-700 font-semibold">Global Trading Network</p>
+                  <p className="text-gray-600 text-sm">Connecting markets worldwide</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Begin Your Global Expansion Journey</h2>
-          <p className="text-gray-600 text-xl mb-10 max-w-2xl mx-auto">
-            Partner with us to navigate international trade with confidence and efficiency
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="relative px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg overflow-hidden transition duration-300 hover:bg-blue-700 hover:shadow-lg">
-              <span className="relative z-10">Get a Free Consultation</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -translate-y-16 translate-x-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/20 rounded-full translate-y-12 -translate-x-12"></div>
             
-            <button className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg transition duration-300 hover:bg-blue-600 hover:text-white">
-              Explore Our Services
-            </button>
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Need Immediate Assistance?</h2>
+              <p className="text-orange-100 text-lg mb-6">
+                For urgent inquiries or to speak with a trading expert immediately, 
+                call us now or message us on WhatsApp.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="tel:+97141234567"
+                  className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 inline-flex items-center justify-center"
+                >
+                  <i className="fas fa-phone mr-2"></i> Call Now
+                </a>
+                <a 
+                  href="https://wa.me/971551234567"
+                  className="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 inline-flex items-center justify-center"
+                >
+                  <i className="fab fa-whatsapp mr-2"></i> WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      <style jsx>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   );
 }

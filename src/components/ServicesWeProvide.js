@@ -1,175 +1,257 @@
 import { useState } from 'react';
 
-export default function ServicesSection() {
-  const [activeService, setActiveService] = useState(0);
+export default function ProductsSection() {
+  const [activeCategory, setActiveCategory] = useState('food');
   
-  const services = [
+  const categories = [
     {
-      id: 1,
-      title: "Import/Export Solutions",
-      icon: "fas fa-ship",
-      description: "End-to-end import and export services for a wide range of products including frames, carry bags, gowns, basketballs, portable chargers, kids helmets and more.",
-      features: ["Customs documentation", "Product certification", "Quality assurance", "Global logistics"]
+      id: 'food',
+      name: 'Food Products',
+      icon: 'fas fa-utensils',
+      color: 'from-green-500 to-emerald-600'
     },
     {
-      id: 2,
-      title: "Logistics & Shipping",
-      icon: "fas fa-truck-loading",
-      description: "Comprehensive logistics solutions ensuring your products reach their destination safely and on time across global markets.",
-      features: ["Air, sea & land freight", "Real-time tracking", "Warehousing solutions", "Last-mile delivery"]
+      id: 'beverages',
+      name: 'Beverages',
+      icon: 'fas fa-wine-bottle',
+      color: 'from-blue-500 to-cyan-600'
     },
     {
-      id: 3,
-      title: "Customs Clearance",
-      icon: "fas fa-file-contract",
-      description: "Expert handling of customs procedures and documentation to ensure smooth cross-border transactions.",
-      features: ["Customs brokerage", "Duty optimization", "Regulatory compliance", "Document preparation"]
+      id: 'household',
+      name: 'Household Goods',
+      icon: 'fas fa-home',
+      color: 'from-purple-500 to-indigo-600'
     },
     {
-      id: 4,
-      title: "Product Sourcing",
-      icon: "fas fa-box-open",
-      description: "Finding the best manufacturers and products worldwide that match your requirements and quality standards.",
-      features: ["Supplier verification", "Quality control", "Sample acquisition", "Market research"]
-    },
-    {
-      id: 5,
-      title: "Trade Consulting",
-      icon: "fas fa-chart-line",
-      description: "Strategic advice to help you navigate international markets, regulations, and maximize your import/export operations.",
-      features: ["Market analysis", "Regulatory guidance", "Risk assessment", "Strategic planning"]
+      id: 'consumables',
+      name: 'Daily Consumables',
+      icon: 'fas fa-shopping-basket',
+      color: 'from-orange-500 to-amber-600'
     }
   ];
 
+  const products = {
+    food: [
+      {
+        name: "Premium Rice Varieties",
+        image: "/api/placeholder/300/200",
+        description: "High-quality basmati, jasmine, and long-grain rice",
+        specs: ["Food Grade Certified", "Vacuum Packed", "Multiple Grades"],
+        moq: "5 Tons"
+      },
+      {
+        name: "Organic Spices & Herbs",
+        image: "/api/placeholder/300/200",
+        description: "Pure, aromatic spices sourced from best regions",
+        specs: ["100% Natural", "Hygienically Packed", "Long Shelf Life"],
+        moq: "1 Ton"
+      },
+      {
+        name: "Grains & Pulses",
+        image: "/api/placeholder/300/200",
+        description: "Nutritious grains and pulses for wholesale distribution",
+        specs: ["Rich in Protein", "Carefully Selected", "Competitive Pricing"],
+        moq: "2 Tons"
+      }
+    ],
+    beverages: [
+      {
+        name: "Premium Juices & Drinks",
+        image: "/api/placeholder/300/200",
+        description: "Natural fruit juices and healthy beverages",
+        specs: ["No Artificial Preservatives", "Various Flavors", "Bulk Packaging"],
+        moq: "500 Cases"
+      },
+      {
+        name: "Mineral Water",
+        image: "/api/placeholder/300/200",
+        description: "Pure drinking water in multiple packaging options",
+        specs: ["BIS Certified", "Multiple Sizes", "OEM Available"],
+        moq: "1000 Cases"
+      },
+      {
+        name: "Energy & Soft Drinks",
+        image: "/api/placeholder/300/200",
+        description: "Popular beverage brands and private labeling",
+        specs: ["Branded Options", "Private Label", "Competitive Rates"],
+        moq: "300 Cases"
+      }
+    ],
+    household: [
+      {
+        name: "Cleaning Supplies",
+        image: "/api/placeholder/300/200",
+        description: "Complete range of household cleaning products",
+        specs: ["Eco-friendly Options", "Commercial Grade", "Bulk Quantities"],
+        moq: "200 Units"
+      },
+      {
+        name: "Kitchen Essentials",
+        image: "/api/placeholder/300/200",
+        description: "Quality kitchenware and cooking essentials",
+        specs: ["Durable Quality", "Multiple Varieties", "Wholesale Prices"],
+        moq: "150 Units"
+      },
+      {
+        name: "Home Care Products",
+        image: "/api/placeholder/300/200",
+        description: "Products for home maintenance and care",
+        specs: ["Premium Quality", "Safe Usage", "Cost Effective"],
+        moq: "100 Units"
+      }
+    ],
+    consumables: [
+      {
+        name: "Personal Care Items",
+        image: "/api/placeholder/300/200",
+        description: "Daily use personal hygiene and care products",
+        specs: ["Quality Assured", "Various Brands", "Regular Supply"],
+        moq: "500 Pieces"
+      },
+      {
+        name: "Paper Products",
+        image: "/api/placeholder/300/200",
+        description: "Tissue papers, napkins, and paper products",
+        specs: ["Soft Quality", "Eco-friendly", "Bulk Packaging"],
+        moq: "200 Packs"
+      },
+      {
+        name: "Plastic & Disposables",
+        image: "/api/placeholder/300/200",
+        description: "Disposable items for daily use",
+        specs: ["Food Grade", "Various Sizes", "Competitive Pricing"],
+        moq: "1000 Pieces"
+      }
+    ]
+  };
+
   return (
-    <section id="services" className="py-16 bg-gradient-to-b from-blue-50 to-indigo-50">
+    <section id="products" className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Premium Services</h2>
+          <div className="inline-flex items-center px-4 py-2 bg-orange-100 rounded-full text-orange-700 text-sm font-semibold mb-4">
+            <i className="fas fa-box-open mr-2"></i>
+            Our Product Portfolio
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Quality Products for 
+            <span className="block text-orange-600">Every Need</span>
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive import and export solutions tailored to your business needs
+            Discover our extensive range of premium products carefully sourced and quality-checked 
+            for your business success
           </p>
         </div>
-        
-        {/* Services Tabs */}
-        <div className="flex flex-wrap justify-center mb-12">
-          {services.map((service, index) => (
+
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categories.map((category) => (
             <button
-              key={service.id}
-              onClick={() => setActiveService(index)}
-              className={`mx-2 my-2 px-6 py-3 rounded-full text-sm font-medium transition duration-300 ${
-                activeService === index
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white text-blue-600 hover:bg-blue-100 shadow-md'
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`group relative px-8 py-4  rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 ${
+                activeCategory === category.id
+                  ? `bg-gradient-to-r ${category.color} text-white shadow-2xl`
+                  : 'bg-white text-gray-700 shadow-lg hover:shadow-xl'
               }`}
             >
-              <i className={`${service.icon} mr-2`}></i>
-              {service.title}
+              <i className={`${category.icon} mr-3`}></i>
+              {category.name}
             </button>
           ))}
         </div>
-        
-        {/* Active Service Details */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-8 md:p-12">
-              <div className="text-blue-600 text-5xl mb-6">
-                <i className={services[activeService].icon}></i>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {products[activeCategory].map((product, index) => (
+            <div key={index} className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
+              {/* Product Image */}
+              <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute top-4 right-4">
+                  <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    MOQ: {product.moq}
+                  </span>
+                </div>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                {services[activeService].title}
-              </h3>
-              <p className="text-lg text-gray-600 mb-6">
-                {services[activeService].description}
-              </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {services[activeService].features.map((feature, index) => (
-                  <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0">
-                      <div className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3">
-                        <i className="fas fa-check text-sm"></i>
-                      </div>
+              {/* Product Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
+                <p className="text-gray-600 mb-4">{product.description}</p>
+                
+                {/* Specifications */}
+                <div className="space-y-2 mb-6">
+                  {product.specs.map((spec, specIndex) => (
+                    <div key={specIndex} className="flex items-center text-sm text-gray-500">
+                      <i className="fas fa-check-circle text-green-500 mr-2"></i>
+                      {spec}
                     </div>
-                    <p className="text-gray-700">{feature}</p>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="flex flex-wrap gap-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center">
-                  <i className="fas fa-info-circle mr-2"></i> Learn More
-                </button>
-                <button className="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center">
-                  <i className="fas fa-envelope mr-2"></i> Request Quote
-                </button>
+                  ))}
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <button className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg font-semibold transition duration-300 flex items-center justify-center">
+                    <i className="fas fa-envelope mr-2"></i> Get Quote
+                  </button>
+                  <button className="w-12 h-12 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i className="fas fa-info"></i>
+                  </button>
+                </div>
               </div>
             </div>
-            
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 md:p-12 text-white flex items-center justify-center">
-              <div className="text-center">
-                <div className="inline-block bg-white bg-opacity-20 p-6 rounded-2xl mb-8">
-                  <i className={`${services[activeService].icon} text-5xl md:text-6xl`}></i>
-                </div>
-                <h4 className="text-xl font-semibold mb-4">Why Choose Our Service?</h4>
-                <ul className="space-y-3 text-blue-100 text-left max-w-md mx-auto">
-                  <li className="flex items-center">
-                    <i className="fas fa-check-circle text-yellow-300 mr-2"></i>
-                    <span>Expertise in global trade regulations</span>
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-check-circle text-yellow-300 mr-2"></i>
-                    <span>Extensive network of partners worldwide</span>
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-check-circle text-yellow-300 mr-2"></i>
-                    <span>Competitive pricing and cost efficiency</span>
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-check-circle text-yellow-300 mr-2"></i>
-                    <span>Personalized solutions for your business</span>
-                  </li>
-                </ul>
+          ))}
+        </div>
+
+        {/* Features Section */}
+        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-2xl text-2xl mb-4">
+                <i className="fas fa-award"></i>
               </div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Quality Assured</h4>
+              <p className="text-gray-600">All products undergo strict quality checks and certifications</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl text-2xl mb-4">
+                <i className="fas fa-shipping-fast"></i>
+              </div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Timely Delivery</h4>
+              <p className="text-gray-600">Efficient logistics ensuring on-time delivery across locations</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl text-2xl mb-4">
+                <i className="fas fa-handshake"></i>
+              </div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Bulk Discounts</h4>
+              <p className="text-gray-600">Competitive pricing with special discounts for bulk orders</p>
             </div>
           </div>
         </div>
-        
-        {/* All Services Grid */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-10">Our Complete Service Offerings</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div key={service.id} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-300 border border-blue-100">
-                <div className="text-blue-600 text-4xl mb-4">
-                  <i className={service.icon}></i>
-                </div>
-                <h4 className="text-xl font-semibold text-gray-800 mb-3">{service.title}</h4>
-                <p className="text-gray-600 mb-4">{service.description.substring(0, 100)}...</p>
-                <button 
-                  onClick={() => setActiveService(service.id - 1)}
-                  className="text-blue-600 hover:text-blue-800 font-medium flex items-center"
-                >
-                  Learn more <i className="fas fa-arrow-right ml-2 text-sm"></i>
-                </button>
-              </div>
-            ))}
-            
-            {/* Custom Solutions Card */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 shadow-md text-white">
-              <div className="text-white text-4xl mb-4">
-                <i className="fas fa-lightbulb"></i>
-              </div>
-              <h4 className="text-xl font-semibold mb-3">Custom Solutions</h4>
-              <p className="text-blue-100 mb-4">Need something specific? We tailor our services to meet your unique business requirements.</p>
-              <button className="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg font-medium transition duration-300">
-                Contact Us Today
+
+        {/* CTA Section */}
+        {/* <div className="text-center mt-16">
+          <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Partner with Us?</h3>
+            <p className="text-orange-100 text-lg mb-6 max-w-2xl mx-auto">
+              Join hundreds of satisfied clients who trust us for their product needs. 
+              Get competitive quotes and personalized service.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300 flex items-center justify-center">
+                <i className="fas fa-phone-alt mr-2"></i> Schedule Call
+              </button>
+              <button className="bg-transparent border-2 border-white hover:bg-white hover:text-orange-600 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300 flex items-center justify-center">
+                <i className="fas fa-file-invoice mr-2"></i> Request Catalog
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

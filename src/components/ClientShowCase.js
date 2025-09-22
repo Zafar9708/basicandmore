@@ -1,266 +1,327 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
-export default function GlobalImpact() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+export default function GlobalNetworkSection() {
+  const [activeRegion, setActiveRegion] = useState(0);
+  const [counter, setCounter] = useState(0);
 
-  useEffect(() => {
-    setIsVisible(true);
-    
-    const interval = setInterval(() => {
-      setActiveIndex(prev => (prev + 1) % successStories.length);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  const successStories = [
+  const regions = [
     {
       id: 1,
-      title: "Electronics Import Expansion",
-      category: "Technology Sector",
-      image: "/api/placeholder/600/400",
-      results: [
-        { metric: "37%", description: "Cost reduction in supply chain" },
-        { metric: "28%", description: "Faster delivery times" },
-        { metric: "12", description: "New markets entered" }
-      ],
-      icon: "fas fa-microchip"
+      name: "Middle East",
+      flag: "🇦🇪",
+      countries: ["UAE", "Saudi Arabia", "Qatar", "Oman", "Kuwait"],
+      products: ["Premium Dates", "Food Products", "Household Goods", "Beverages"],
+      color: "from-orange-500 to-amber-600",
+      stats: "35% of our trade volume"
     },
     {
       id: 2,
-      title: "Apparel Global Distribution",
-      category: "Fashion Industry",
-      image: "/api/placeholder/600/400",
-      results: [
-        { metric: "42%", description: "Increase in export volume" },
-        { metric: "19", description: "New countries reached" },
-        { metric: "99.2%", description: "On-time delivery rate" }
-      ],
-      icon: "fas fa-tshirt"
+      name: "Southeast Asia",
+      flag: "🇸🇬",
+      countries: ["Singapore", "Malaysia", "Thailand", "Vietnam", "Indonesia"],
+      products: ["Rice Varieties", "Spices", "Food Items", "Consumables"],
+      color: "from-orange-400 to-amber-500",
+      stats: "28% of our trade volume"
     },
     {
       id: 3,
-      title: "Sports Equipment Logistics",
-      category: "Sporting Goods",
-      image: "/api/placeholder/600/400",
-      results: [
-        { metric: "31%", description: "Shipping cost reduction" },
-        { metric: "15%", description: "Faster customs clearance" },
-        { metric: "100%", description: "Regulatory compliance" }
-      ],
-      icon: "fas fa-basketball-ball"
+      name: "Europe",
+      flag: "🇩🇪",
+      countries: ["Germany", "UK", "France", "Italy", "Netherlands"],
+      products: ["Quality Food Items", "Beverages", "Household Products", "Personal Care"],
+      color: "from-amber-500 to-orange-500",
+      stats: "20% of our trade volume"
     },
     {
       id: 4,
-      title: "Consumer Goods Export",
-      category: "Retail Products",
-      image: "/api/placeholder/600/400",
-      results: [
-        { metric: "27%", description: "Overall cost savings" },
-        { metric: "23", description: "New distribution partners" },
-        { metric: "98%", description: "Client satisfaction rate" }
-      ],
-      icon: "fas fa-box-open"
+      name: "North America",
+      flag: "🇺🇸",
+      countries: ["USA", "Canada", "Mexico"],
+      products: ["Food Products", "Beverages", "Daily Consumables", "Household Items"],
+      color: "from-amber-600 to-orange-400",
+      stats: "17% of our trade volume"
     }
   ];
 
-  const globalStats = [
-    { value: "5+", label: "Countries Served", icon: "fas fa-globe-americas" },
-    { value: "3+", label: "Years Experience", icon: "fas fa-calendar-alt" },
-    { value: "50+", label: "Successful Projects", icon: "fas fa-chart-line" },
-    { value: "99.7%", label: "On-Time Delivery", icon: "fas fa-shipping-fast" }
+  const services = [
+    {
+      icon: "fas fa-handshake",
+      title: "Strategic Partnerships",
+      description: "Long-term relationships with trusted suppliers and distributors worldwide",
+      features: ["Supplier verification", "Quality audits", "Contract manufacturing"]
+    },
+    {
+      icon: "fas fa-chart-line",
+      title: "Market Intelligence",
+      description: "Real-time market insights and trend analysis for informed decisions",
+      features: ["Demand forecasting", "Price monitoring", "Competitive analysis"]
+    },
+    {
+      icon: "fas fa-shield-alt",
+      title: "Quality Assurance",
+      description: "Comprehensive quality control and product testing at every stage",
+      features: ["Quality checks", "Batch testing", "Standards compliance"]
+    }
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveRegion((prev) => (prev + 1) % regions.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (counter < 100) {
+      const timer = setTimeout(() => setCounter(counter + 1), 30);
+      return () => clearTimeout(timer);
+    }
+  }, [counter]);
+
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-30 translate-x-1/3 translate-y-1/3"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 font-medium text-sm mb-6">
-            <i className="fas fa-chart-network mr-2"></i> GLOBAL IMPACT
+    <section className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-orange-200/30 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-amber-200/30 to-transparent"></div>
+        
+        {/* Animated Globe */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="relative w-64 h-64 md:w-96 md:h-96">
+            <div className="absolute inset-0 bg-orange-200/20 rounded-full animate-pulse"></div>
+            <div className="absolute inset-8 bg-amber-200/20 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute inset-16 bg-orange-300/20 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-6xl md:text-8xl">🌍</div>
+            </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Proven Results Across Industries</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Delivering measurable success through optimized import and export solutions
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-20 w-8 h-8 bg-orange-300/30 rounded-full animate-float"></div>
+        <div className="absolute top-40 right-32 w-12 h-12 bg-amber-300/30 rounded-full animate-float" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-orange-400/30 rounded-full animate-float" style={{animationDelay: '2.5s'}}></div>
+        <div className="absolute bottom-20 right-20 w-6 h-6 bg-amber-400/30 rounded-full animate-float" style={{animationDelay: '3.5s'}}></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-orange-200 mb-6">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+            <span className="text-orange-700 font-semibold text-sm uppercase tracking-wide">
+              Global Reach, Local Expertise
+            </span>
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            Our Worldwide
+            <span className="block bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+              Trading Network
+            </span>
+          </h1>
+          
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Connecting markets across 12+ countries with a robust network of partners, 
+            ensuring seamless trade operations for food products, beverages, and household goods.
           </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {globalStats.map((stat, index) => (
-            <div 
-              key={index}
-              className="bg-white rounded-2xl p-6 text-center shadow-md border border-blue-100 transition-all duration-500 hover:shadow-lg hover:-translate-y-1"
-            >
-              <div className="text-blue-600 text-2xl mb-3">
-                <i className={stat.icon}></i>
-              </div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">{stat.value}</div>
-              <div className="text-gray-600 text-sm">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Success Stories */}
+        {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Story Content */}
+          {/* Interactive Map Section */}
           <div className="relative">
-            <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 text-blue-200 text-6xl z-0">
-              <i className="fas fa-quote-left"></i>
-            </div>
-            
-            <div className="relative z-10">
-              {successStories.map((story, index) => (
-                <div 
-                  key={story.id}
-                  className={`p-6 rounded-2xl mb-6 transition-all duration-500 transform ${
-                    activeIndex === index 
-                      ? 'bg-blue-600 text-white shadow-2xl scale-105' 
-                      : 'bg-white text-gray-800 shadow-md opacity-70 hover:opacity-100'
-                  }`}
-                  onClick={() => setActiveIndex(index)}
-                >
-                  <div className="flex items-start">
-                    <div className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center text-xl ${
-                      activeIndex === index ? 'bg-blue-700 text-white' : 'bg-blue-100 text-blue-600'
-                    }`}>
-                      <i className={story.icon}></i>
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-orange-200 shadow-lg">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-2xl font-bold text-gray-900">Our Regional Presence</h2>
+                <div className="flex space-x-2">
+                  {regions.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveRegion(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === activeRegion ? 'bg-orange-500 scale-125' : 'bg-orange-200'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Region Card */}
+              <div className={`bg-gradient-to-r ${regions[activeRegion].color} rounded-2xl p-6 text-white mb-6 transition-all duration-500`}>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center">
+                    <span className="text-4xl mr-4">{regions[activeRegion].flag}</span>
+                    <div>
+                      <h3 className="text-2xl font-bold">{regions[activeRegion].name}</h3>
+                      <p className="text-white/90">{regions[activeRegion].stats}</p>
                     </div>
-                    <div className="ml-5">
-                      <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                        activeIndex === index ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-600'
-                      }`}>
-                        {story.category}
-                      </span>
-                      <h3 className="text-lg font-semibold mt-3 mb-2">{story.title}</h3>
-                      
-                      <div className="grid grid-cols-3 gap-4 mt-4">
-                        {story.results.map((result, i) => (
-                          <div key={i} className="text-center">
-                            <div className={`text-xl font-bold ${activeIndex === index ? 'text-yellow-300' : 'text-blue-600'}`}>
-                              {result.metric}
-                            </div>
-                            <div className={`text-xs ${activeIndex === index ? 'text-blue-200' : 'text-gray-600'}`}>
-                              {result.description}
-                            </div>
-                          </div>
-                        ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Countries & Products */}
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <h4 className="text-gray-900 font-semibold mb-3 flex items-center">
+                    <i className="fas fa-map-marker-alt mr-2 text-orange-500"></i>
+                    Countries Served
+                  </h4>
+                  <div className="space-y-2">
+                    {regions[activeRegion].countries.map((country, index) => (
+                      <div key={index} className="flex items-center text-gray-700">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                        {country}
                       </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="text-gray-900 font-semibold mb-3 flex items-center">
+                    <i className="fas fa-boxes mr-2 text-amber-500"></i>
+                    Key Products
+                  </h4>
+                  <div className="space-y-2">
+                    {regions[activeRegion].products.map((product, index) => (
+                      <div key={index} className="flex items-center text-gray-700">
+                        <div className="w-2 h-2 bg-amber-500 rounded-full mr-3"></div>
+                        {product}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trade Flow Animation */}
+            <div className="mt-6 bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-orange-200 shadow-lg">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-900 font-semibold">Supply Chain Efficiency</span>
+                <span className="text-orange-600 text-sm font-semibold">{counter}% Optimized</span>
+              </div>
+              <div className="w-full bg-orange-100 rounded-full h-3">
+                <div 
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 h-3 rounded-full transition-all duration-1000 ease-out"
+                  style={{ width: `${counter}%` }}
+                ></div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-600 mt-2">
+                <span>Start</span>
+                <span>Fully Optimized</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Services & Capabilities */}
+          <div className="space-y-6">
+            {services.map((service, index) => (
+              <div key={index} className="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-orange-200 shadow-lg hover:shadow-xl transition-all duration-300 group hover:border-orange-300">
+                <div className="flex items-start">
+                  <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl p-3 mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <i className={`${service.icon} text-white text-xl`}></i>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                    <p className="text-gray-600 mb-3">{service.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {service.features.map((feature, idx) => (
+                        <span key={idx} className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {feature}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-            
-            <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 text-blue-200 text-6xl z-0">
-              <i className="fas fa-quote-right"></i>
-            </div>
-          </div>
-
-          {/* Visual Representation */}
-          <div className="bg-white rounded-2xl p-1 shadow-xl border border-blue-100 overflow-hidden">
-            <div className="relative h-80 rounded-xl overflow-hidden">
-              {/* Replace with actual image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                <div className="text-center text-white p-8">
-                  <i className={`${successStories[activeIndex].icon} text-5xl mb-4`}></i>
-                  <h3 className="text-2xl font-bold mb-2">{successStories[activeIndex].title}</h3>
-                  <p className="text-blue-100">{successStories[activeIndex].category}</p>
-                </div>
-              </div>
-              
-              {/* Global network visualization */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full"></div>
-                <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-white rounded-full"></div>
-                <div className="absolute bottom-1/4 left-1/5 w-2 h-2 bg-white rounded-full"></div>
-                <div className="absolute bottom-1/3 right-1/5 w-2 h-2 bg-white rounded-full"></div>
-                <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-yellow-300 rounded-full"></div>
-                
-                {/* Connection lines */}
-                <div className="absolute top-1/2 left-1/2 w-20 h-0.5 bg-white/30 transform rotate-45 origin-left"></div>
-                <div className="absolute top-1/2 left-1/2 w-16 h-0.5 bg-white/30 transform -rotate-30 origin-left"></div>
-                <div className="absolute top-1/2 left-1/2 w-24 h-0.5 bg-white/30 transform rotate-10 origin-left"></div>
-              </div>
-            </div>
-            
-            <div className="p-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Industry Impact</h4>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-blue-50 rounded-lg p-3 text-center">
-                  <div className="text-blue-600 font-bold">5+</div>
-                  <div className="text-xs text-gray-600">Countries Reached</div>
-                </div>
-                <div className="bg-blue-50 rounded-lg p-3 text-center">
-                  <div className="text-blue-600 font-bold">3+</div>
-                  <div className="text-xs text-gray-600">Industries Served</div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-4 text-white">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 bg-white/20 w-10 h-10 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-sync-alt"></i>
-                  </div>
-                  <div className="ml-4">
-                    <div className="font-semibold">Continuous Optimization</div>
-                    <div className="text-blue-100 text-sm">Ongoing process improvements</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Industry Expertise */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">Our Industry Expertise</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              { icon: "fas fa-microchip", label: "Electronics" },
-              { icon: "fas fa-tshirt", label: "Apparel" },
-              { icon: "fas fa-basketball-ball", label: "Sports" },
-              { icon: "fas fa-box-open", label: "Consumer Goods" },
-              { icon: "fas fa-gem", label: "Luxury Items" },
-              { icon: "fas fa-home", label: "Home Decor" }
-            ].map((industry, index) => (
-              <div key={index} className="bg-white rounded-xl p-4 text-center shadow-md border border-blue-100 transition-all duration-300 hover:shadow-lg">
-                <div className="text-blue-600 text-2xl mb-2">
-                  <i className={industry.icon}></i>
-                </div>
-                <div className="text-sm text-gray-700">{industry.label}</div>
               </div>
             ))}
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 text-center border border-orange-200 shadow-lg">
+                <div className="text-2xl font-bold text-orange-600 mb-1">12+</div>
+                <div className="text-gray-600 text-sm">Countries</div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 text-center border border-orange-200 shadow-lg">
+                <div className="text-2xl font-bold text-amber-600 mb-1">50+</div>
+                <div className="text-gray-600 text-sm">Product Categories</div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 text-center border border-orange-200 shadow-lg">
+                <div className="text-2xl font-bold text-orange-500 mb-1">200+</div>
+                <div className="text-gray-600 text-sm">Business Partners</div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 text-center border border-orange-200 shadow-lg">
+                <div className="text-2xl font-bold text-amber-500 mb-1">8+</div>
+                <div className="text-gray-600 text-sm">Years Experience</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Partnership Benefits */}
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-orange-200 shadow-lg mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Why Partner With Us?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center group">
+              <div className="bg-gradient-to-r from-orange-500 to-amber-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i className="fas fa-arrow-trend-up text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Market Expansion</h3>
+              <p className="text-gray-600">Access new markets with our established distribution channels and local expertise</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="bg-gradient-to-r from-amber-500 to-orange-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i className="fas fa-hand-holding-usd text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Cost Efficiency</h3>
+              <p className="text-gray-600">Reduce operational costs through optimized supply chains and bulk purchasing</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="bg-gradient-to-r from-orange-400 to-amber-400 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i className="fas fa-shield-alt text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Quality Guarantee</h3>
+              <p className="text-gray-600">Ensure product quality with our rigorous testing and quality control processes</p>
+            </div>
           </div>
         </div>
 
         {/* CTA Section */}
-        {/* <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 md:p-12 text-white text-center shadow-xl relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full"></div>
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/10 rounded-full"></div>
-          
-          <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Start Your Success Story</h3>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Join companies across the globe that trust us with their import and export needs
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition duration-300 shadow-md">
-                <i className="fas fa-calendar-check mr-3"></i> Get Started
-              </button>
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">
-                <i className="fas fa-file-alt mr-3"></i> Download Brochure
-              </button>
+        {/* <div className="text-center">
+          <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -translate-y-16 translate-x-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/20 rounded-full translate-y-12 -translate-x-12"></div>
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Expand Your Reach?</h3>
+              <p className="text-orange-100 text-lg mb-6 max-w-2xl mx-auto">
+                Leverage our international network to grow your business and access new markets with confidence.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold text-lg transition duration-300 shadow-lg">
+                  <i className="fas fa-globe mr-2"></i> Explore Global Opportunities
+                </button>
+                <button className="bg-transparent border-2 border-white hover:bg-white hover:text-orange-600 px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
+                  <i className="fas fa-calendar mr-2"></i> Schedule Consultation
+                </button>
+              </div>
             </div>
           </div>
         </div> */}
       </div>
+
+      <style jsx global>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }

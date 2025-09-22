@@ -12,6 +12,8 @@ import FullWidthSection from "components/FullWidthSection";
 
 import ServiceProcess from "components/ServiceProcess";
 import ClientShowcase from "components/ClientShowCase";
+import ProductsPage from "components/Product";
+import ProductSourcingHub from "components/ProductSourcingHub";
 
 export default function Home() {
   return (
@@ -26,6 +28,10 @@ export default function Home() {
       
       <FullWidthSection>
        <ServicesWeProvide />
+      </FullWidthSection>
+
+        <FullWidthSection>
+       <ProductsPage />
       </FullWidthSection>
 
       
@@ -56,6 +62,12 @@ export default function Home() {
       
       <FullWidthSection>
         <ClientShowcase />
+      </FullWidthSection>
+
+
+       <FullWidthSection>
+        {/* <ProductSourcing /> */}
+        <ProductSourcingHub />
       </FullWidthSection>
       
       {/* <FullWidthSection>
