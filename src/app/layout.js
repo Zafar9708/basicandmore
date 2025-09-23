@@ -1,20 +1,20 @@
+
+
+
 import '../styles/globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata = {
-  title: 'Basic and More Inc - General Trading & Food',
-  description:
-    'Basic and More Inc provides high-quality general trading and food distribution services, delivering trusted products and exceptional service worldwide.',
-  keywords:
-    'Basic and More Inc, general trading, food trading, import export, global trade solutions, food distribution',
+  title: 'Box&Bag - Gloabl Trade Solutions',
+  description: 'Box&Bag  provides comprehensive financial services including bookkeeping, tax preparation, financial consulting, and strategic business advisory.',
+  keywords: 'Box&Bag, trading services, bookkeeping, tax preparation, financial consulting, business advisory',
   robots: 'index, follow',
   openGraph: {
-    title: 'Basic and More Inc - General Trading & Food',
-    description:
-      'Expert solutions in general trading and food import/export services for businesses of all sizes.',
-    url: 'https://basicandmore.com',
-    siteName: 'Basic and More Inc',
+    title: 'Box&Bag - Gloabl Trade Solutions',
+    description: 'Expert Export/import services for businesses of all sizes',
+    url: 'https://atlabb-accounting.com',
+    siteName: 'Atlabb Accounting',
     type: 'website',
     locale: 'en_US',
   },
@@ -24,21 +24,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="hide-scrollbar">
       <head>
-        {/* Organization Schema */}
+        {/* Brand Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'Basic and More Inc',
-              url: 'https://basicandmore.com',
-              logo: 'https://basicandmore.com/logo.png',
-              description:
-                'Basic and More Inc specializes in general trading and food import/export, offering reliable products and services globally.',
-              sameAs: [
-                'https://www.facebook.com/basicandmore',
-                'https://www.linkedin.com/company/basicandmore'
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Atlabb Accounting",
+              "url": "https://atlabb-accounting.com",
+              "logo": "https://atlabb-accounting.com/logo.png",
+              "description": "Professional accounting services for businesses",
+              "sameAs": [
+                "https://www.facebook.com/atlabb",
+                "https://www.linkedin.com/company/atlabb"
               ]
             }),
           }}
@@ -46,7 +45,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className="hide-scrollbar">
         <Navbar />
-        <main className="min-h-screen full-width-container">{children}</main>
+        <main className="min-h-screen full-width-container">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

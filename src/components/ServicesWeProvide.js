@@ -34,7 +34,7 @@ export default function ProductsSection() {
     food: [
       {
         name: "Premium Rice Varieties",
-        image: "/api/placeholder/300/200",
+        image: "https://exportmandi.com/wp-content/uploads/2024/02/rice-types.jpg",
         description: "High-quality basmati, jasmine, and long-grain rice",
         specs: ["Food Grade Certified", "Vacuum Packed", "Multiple Grades"],
         moq: "5 Tons"

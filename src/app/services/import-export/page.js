@@ -1,328 +1,339 @@
-"use client"
-import { useState } from 'react';
+// app/import-export/page.js
+"use client";
+import { useState, useEffect } from 'react';
 
-export default function ImportExportServices() {
-  const [activeService, setActiveService] = useState(0);
-  const [hoveredStep, setHoveredStep] = useState(null);
+export default function FoodTradingImportExport() {
+  const [activeTab, setActiveTab] = useState('import');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
 
-  // Services data
-  const services = [
-    {
-      title: "Agricultural Export Solutions",
-      description: "Specialized export services for agricultural products including sesame seeds, rice, mustard, and other commodities",
-      icon: "🌱",
-      features: [
-        "Quality certification & inspection",
-        "Custom packaging solutions",
-        "Export documentation handling",
-        "Global distribution network"
-      ],
-      image: "/agricultural-export.jpg"
-    },
-    {
-      title: "Textile & Apparel Export",
-      description: "End-to-end export services for towels, fabrics, and textile products to international markets",
-      icon: "🧵",
-      features: [
-        "Quality control & assurance",
-        "Custom packaging & branding",
-        "Logistics management",
-        "Market compliance & regulations"
-      ],
-      image: "/textile-export.jpg"
-    },
-    {
-      title: "Consumer Goods Import",
-      description: "Complete import solutions for frames, carry bags, gowns, and various consumer products",
-      icon: "🛍️",
-      features: [
-        "Supplier identification & verification",
-        "Bulk purchasing & negotiation",
-        "Quality inspection & assurance",
-        "Customs clearance & documentation"
-      ],
-      image: "/consumer-import.jpg"
-    },
-    {
-      title: "Sports Equipment Import",
-      description: "Specialized import services for basketballs, portable hoops, kids helmets, and sports gear",
-      icon: "⚽",
-      features: [
-        "Product sourcing & verification",
-        "Safety standards compliance",
-        "Inventory management",
-        "Distribution network"
-      ],
-      image: "/sports-import.jpg"
+  // Food categories for trading
+  const foodCategories = {
+    all: { name: "All Products", icon: "📦" },
+    grains: { name: "Grains & Cereals", icon: "🌾" },
+    spices: { name: "Spices & Herbs", icon: "🌿" },
+    dairy: { name: "Dairy Products", icon: "🥛" },
+    meat: { name: "Meat & Poultry", icon: "🍗" },
+    seafood: { name: "Seafood", icon: "🐟" },
+    fruits: { name: "Fruits & Vegetables", icon: "🍎" },
+    oils: { name: "Cooking Oils", icon: "🫒" },
+    beverages: { name: "Beverages", icon: "☕" }
+  };
+
+  // Sample food products data
+  const foodProducts = [
+    { id: 1, name: "Basmati Rice", category: "grains", origin: "India", price: "$850/ton", stock: "500 tons", status: "available" },
+    { id: 2, name: "Arabica Coffee Beans", category: "beverages", origin: "Brazil", price: "$3,200/ton", stock: "200 tons", status: "available" },
+    { id: 3, name: "Extra Virgin Olive Oil", category: "oils", origin: "Spain", price: "$4.5/L", stock: "10,000 L", status: "available" },
+    { id: 4, name: "Black Pepper", category: "spices", origin: "Vietnam", price: "$2,800/ton", stock: "50 tons", status: "low" },
+    { id: 5, name: "Frozen Beef", category: "meat", origin: "Australia", price: "$6,500/ton", stock: "100 tons", status: "available" },
+    { id: 6, name: "Almonds", category: "fruits", origin: "USA", price: "$7,200/ton", stock: "75 tons", status: "available" },
+    { id: 7, name: "Canned Tuna", category: "seafood", origin: "Thailand", price: "$2.3/can", stock: "50,000 cans", status: "available" },
+    { id: 8, name: "Parmesan Cheese", category: "dairy", origin: "Italy", price: "$12.5/kg", stock: "5,000 kg", status: "available" }
+  ];
+
+  const tradingStats = {
+    countries: 28,
+    products: 150,
+    containers: 47,
+    successRate: 99.7
+  };
+
+  const recentTransactions = [
+    { id: 1, product: "Wheat Flour", type: "export", destination: "UAE", quantity: "100 tons", date: "2024-01-15", status: "completed" },
+    { id: 2, product: "Green Tea", type: "import", origin: "China", quantity: "20 tons", date: "2024-01-14", status: "completed" },
+    { id: 3, product: "Olive Oil", type: "export", destination: "USA", quantity: "5,000 L", date: "2024-01-13", status: "shipping" },
+    { id: 4, product: "Dates", type: "import", origin: "Saudi Arabia", quantity: "15 tons", date: "2024-01-12", status: "completed" },
+    { id: 5, product: "Spices Mix", type: "export", destination: "UK", quantity: "2 tons", date: "2024-01-11", status: "processing" }
+  ];
+
+  const importProcess = [
+    { step: 1, title: "Sourcing", description: "Find reliable suppliers worldwide", icon: "🔍" },
+    { step: 2, title: "Quality Check", description: "Ensure food safety standards", icon: "✅" },
+    { step: 3, title: "Logistics", description: "Arrange shipping & customs", icon: "🚢" },
+    { step: 4, title: "Delivery", description: "Warehouse to your location", icon: "🏭" }
+  ];
+
+  const exportProcess = [
+    { step: 1, title: "Order Processing", description: "Receive and verify orders", icon: "📋" },
+    { step: 2, title: "Packaging", description: "Food-grade packaging", icon: "📦" },
+    { step: 3, title: "Documentation", description: "Export certificates & papers", icon: "📄" },
+    { step: 4, title: "Shipment", description: "International delivery", icon: "✈️" }
+  ];
+
+  const filteredProducts = selectedCategory === 'all' 
+    ? foodProducts 
+    : foodProducts.filter(product => product.category === selectedCategory);
+
+  useEffect(() => {
+    if (isUploading) {
+      const timer = setInterval(() => {
+        setUploadProgress(prev => {
+          if (prev >= 100) {
+            clearInterval(timer);
+            setIsUploading(false);
+            return 100;
+          }
+          return prev + 10;
+        });
+      }, 300);
+      return () => clearInterval(timer);
     }
-  ];
+  }, [isUploading]);
 
-  // Process steps with icons
-  const processSteps = [
-    {
-      title: "Consultation & Strategy",
-      description: "We begin with understanding your business needs and developing a customized trade strategy",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      )
-    },
-    {
-      title: "Sourcing & Verification",
-      description: "Identification of reliable suppliers and thorough quality verification processes",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      )
-    },
-    {
-      title: "Logistics & Compliance",
-      description: "Comprehensive handling of shipping, customs paperwork, and regulatory compliance",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      )
-    },
-    {
-      title: "Delivery & Support",
-      description: "Timely delivery to destination with ongoing support and relationship management",
-      icon: (
-        <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-        </svg>
-      )
-    }
-  ];
-
-  // Statistics
-  const stats = [
-    { value: "98%", label: "On-Time Delivery Rate" },
-    { value: "50+", label: "Countries Served" },
-    { value: "500+", label: "Successful Shipments" },
-    { value: "24/7", label: "Customer Support" }
-  ];
+  const handleOrderSubmit = () => {
+    setIsUploading(true);
+    setUploadProgress(0);
+  };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section with Parallax Effect */}
-      <section className="relative py-32 bg-gradient-to-br from-blue-900 to-blue-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="absolute inset-0 bg-pattern opacity-10"></div>
-        
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Global Trade <span className="text-blue-300">Solutions</span>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 p-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-12 pt-8">
+          <div className="inline-flex items-center px-6 py-3 bg-white rounded-full shadow-lg border border-orange-200 mb-6">
+            <span className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+            <span className="text-orange-700 font-semibold text-sm uppercase tracking-wide">
+              Global Food Trading
+            </span>
+          </div>
+          
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="block text-gray-900">Food Import & Export</span>
+            <span className="block bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+              Trading Platform
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto font-light mb-10">
-            Streamlining international trade with customized import and export solutions
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Connecting global food markets with premium quality products and reliable supply chain solutions
           </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="px-8 py-4 bg-white text-blue-700 font-semibold rounded-lg transition duration-300 hover:bg-blue-50 hover:shadow-lg">
-              Explore Our Services
-            </button>
-            <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg transition duration-300 hover:bg-white hover:text-blue-700">
-              Get a Quote
-            </button>
+        </div>
+
+        {/* Stats Overview */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-orange-200 text-center">
+            <div className="text-3xl font-bold text-orange-600 mb-2">{tradingStats.countries}+</div>
+            <div className="text-gray-600">Countries</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-200 text-center">
+            <div className="text-3xl font-bold text-amber-600 mb-2">{tradingStats.products}+</div>
+            <div className="text-gray-600">Products</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-orange-200 text-center">
+            <div className="text-3xl font-bold text-orange-500 mb-2">{tradingStats.containers}</div>
+            <div className="text-gray-600">Containers/Month</div>
+          </div>
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-200 text-center">
+            <div className="text-3xl font-bold text-green-600 mb-2">{tradingStats.successRate}%</div>
+            <div className="text-gray-600">Success Rate</div>
           </div>
         </div>
-        
-        {/* Animated elements */}
-        <div className="absolute bottom-10 left-10 w-20 h-20 rounded-full bg-blue-500 opacity-20 animate-pulse"></div>
-        <div className="absolute top-20 right-20 w-16 h-16 rounded-full bg-blue-400 opacity-30 animate-bounce"></div>
-        <div className="absolute top-1/3 left-1/4 w-12 h-12 rounded-full bg-blue-300 opacity-40 animate-ping"></div>
-      </section>
 
-      {/* Services Showcase */}
-      <section className="py-20 relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Import & Export Solutions</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Tailored services designed to simplify global trade and maximize your business potential
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {services.map((service, index) => (
-              <div 
-                key={index}
-                className={`relative rounded-2xl overflow-hidden shadow-xl transition-all duration-500 ${
-                  activeService === index ? 'ring-4 ring-blue-500 scale-105' : 'ring-2 ring-gray-200 hover:ring-blue-300'
-                }`}
-                onMouseEnter={() => setActiveService(index)}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 z-10"></div>
-                <div className="h-48 bg-blue-100 flex items-center justify-center relative">
-                  <div className="text-6xl text-blue-600">{service.icon}</div>
-                </div>
-                
-                <div className="p-6 relative z-20 bg-white">
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  
-                  <ul className="space-y-2">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start text-gray-700">
-                        <svg className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg transition duration-300 hover:bg-blue-700">
-                    Learn More
+        {/* Main Trading Interface */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Left Panel - Products & Orders */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-3xl shadow-xl border border-orange-200 p-8">
+              {/* Tab Navigation */}
+              <div className="flex space-x-4 mb-8">
+                {['import', 'export'].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`flex-1 py-4 px-6 rounded-2xl font-semibold transition-all duration-300 ${
+                      activeTab === tab
+                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg transform scale-105'
+                        : 'bg-orange-50 text-orange-700 hover:bg-orange-100'
+                    }`}
+                  >
+                    <div className="flex items-center justify-center space-x-3">
+                      <span className="text-2xl">{tab === 'import' ? '📥' : '📤'}</span>
+                      <span>{tab === 'import' ? 'Import Products' : 'Export Products'}</span>
+                    </div>
                   </button>
+                ))}
+              </div>
+
+              {/* Category Filter */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Product Categories</h3>
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+                  {Object.entries(foodCategories).map(([key, category]) => (
+                    <button
+                      key={key}
+                      onClick={() => setSelectedCategory(key)}
+                      className={`p-3 rounded-xl border-2 transition-all duration-300 ${
+                        selectedCategory === key
+                          ? 'border-orange-500 bg-orange-50 text-orange-700 transform scale-105'
+                          : 'border-orange-200 text-gray-600 hover:border-orange-300'
+                      }`}
+                    >
+                      <div className="text-lg mb-1">{category.icon}</div>
+                      <div className="text-xs font-medium">{category.name}</div>
+                    </button>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section - Circular Design */}
-      <section className="py-20 relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Streamlined Process</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              A structured approach that ensures efficiency, compliance, and success in every trade operation
-            </p>
-          </div>
-          
-          <div className="relative h-96 md:h-[500px]">
-            {/* Central circle */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-blue-600 flex items-center justify-center text-white text-lg font-semibold">
-                Your Success
-              </div>
-            </div>
-            
-            {/* Process steps arranged in a circle */}
-            {processSteps.map((step, index) => {
-              const angle = (index * 90) - 45; // Arrange in a circle
-              const radius = 180; // Distance from center
-              const x = radius * Math.cos((angle * Math.PI) / 180);
-              const y = radius * Math.sin((angle * Math.PI) / 180);
-              
-              return (
-                <div
-                  key={index}
-                  className={`absolute w-64 p-6 bg-white rounded-xl shadow-lg transition-all duration-300 transform ${
-                    hoveredStep === index ? 'scale-110 z-10 ring-4 ring-blue-500' : 'scale-100'
-                  }`}
-                  style={{
-                    left: `calc(50% + ${x}px)`,
-                    top: `calc(50% + ${y}px)`,
-                    transform: `translate(-50%, -50%) ${hoveredStep === index ? 'scale(1.1)' : ''}`,
-                  }}
-                  onMouseEnter={() => setHoveredStep(index)}
-                  onMouseLeave={() => setHoveredStep(null)}
-                >
-                  <div className="text-blue-600 mb-4">{step.icon}</div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
-                  
-                  <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
-                    {index + 1}
+              {/* Products Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                {filteredProducts.map((product) => (
+                  <div key={product.id} className="border border-orange-200 rounded-2xl p-4 hover:shadow-lg transition duration-300">
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{product.name}</h4>
+                        <p className="text-sm text-gray-600">{product.origin}</p>
+                      </div>
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${
+                        product.status === 'available' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'
+                      }`}>
+                        {product.status}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm text-gray-600 mb-3">
+                      <span>Price: {product.price}</span>
+                      <span>Stock: {product.stock}</span>
+                    </div>
+                    <button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white py-2 rounded-xl font-semibold hover:shadow-lg transition duration-300">
+                      {activeTab === 'import' ? 'Request Import' : 'Order Export'}
+                    </button>
                   </div>
+                ))}
+              </div>
+
+              {/* Order Form */}
+              <div className="border-2 border-dashed border-orange-300 rounded-2xl p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  {activeTab === 'import' ? 'Custom Import Request' : 'Export Order Form'}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <input type="text" placeholder="Product Name" className="p-3 border border-orange-200 rounded-xl" />
+                  <input type="text" placeholder="Quantity" className="p-3 border border-orange-200 rounded-xl" />
+                  <input type="text" placeholder={activeTab === 'import' ? "Country of Origin" : "Destination Country"} className="p-3 border border-orange-200 rounded-xl" />
+                  <input type="text" placeholder="Contact Email" className="p-3 border border-orange-200 rounded-xl" />
                 </div>
-              );
-            })}
+                <textarea placeholder="Additional Requirements" className="w-full p-3 border border-orange-200 rounded-xl mb-4" rows="3"></textarea>
+                <button
+                  onClick={handleOrderSubmit}
+                  disabled={isUploading}
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition duration-300 disabled:opacity-50"
+                >
+                  {isUploading ? 'Submitting...' : 'Submit Request'}
+                </button>
+                
+                {isUploading && (
+                  <div className="mt-4">
+                    <div className="w-full bg-orange-200 rounded-full h-2">
+                      <div 
+                        className="bg-gradient-to-r from-orange-500 to-amber-500 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${uploadProgress}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-sm text-gray-600 mt-2">Processing your request... {uploadProgress}%</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Panel - Process & Transactions */}
+          <div className="space-y-8">
+            {/* Trading Process */}
+            <div className="bg-white rounded-3xl shadow-xl border border-orange-200 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                {activeTab === 'import' ? 'Import Process' : 'Export Process'}
+              </h3>
+              <div className="space-y-4">
+                {(activeTab === 'import' ? importProcess : exportProcess).map((step) => (
+                  <div key={step.step} className="flex items-center space-x-4 p-3 bg-orange-50 rounded-xl">
+                    <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-white font-bold">
+                      {step.step}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">{step.title}</div>
+                      <div className="text-sm text-gray-600">{step.description}</div>
+                    </div>
+                    <div className="text-2xl ml-auto">{step.icon}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Transactions */}
+            <div className="bg-white rounded-3xl shadow-xl border border-orange-200 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Transactions</h3>
+              <div className="space-y-3">
+                {recentTransactions.map((transaction) => (
+                  <div key={transaction.id} className="flex items-center justify-between p-3 hover:bg-orange-50 rounded-xl transition duration-300">
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                        transaction.type === 'import' ? 'bg-orange-100' : 'bg-amber-100'
+                      }`}>
+                        <span className="text-lg">{transaction.type === 'import' ? '📥' : '📤'}</span>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900">{transaction.product}</div>
+                        <div className="text-sm text-gray-500">
+                          {transaction.type === 'import' ? `From: ${transaction.origin}` : `To: ${transaction.destination}`}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-medium text-gray-900">{transaction.quantity}</div>
+                      <div className={`text-xs font-medium ${
+                        transaction.status === 'completed' ? 'text-green-600' : 
+                        transaction.status === 'shipping' ? 'text-blue-600' : 'text-orange-600'
+                      }`}>
+                        {transaction.status}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Global Network Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Worldwide Network</h2>
-            <p className="text-blue-100 max-w-2xl mx-auto">
-              Leverage our established network of partners and distributors across international markets
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="p-6 bg-blue-500 rounded-xl transform transition duration-300 hover:-translate-y-2">
-              <div className="text-4xl mb-3">🌎</div>
-              <h3 className="font-semibold">Americas</h3>
-              <p className="text-blue-100 text-sm mt-2">USA, Canada, Brazil, Mexico</p>
+        {/* Features Section */}
+        <div className="bg-white rounded-3xl shadow-xl border border-orange-200 p-8 mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Our Food Trading Services?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center p-6 bg-orange-50 rounded-2xl">
+              <div className="text-3xl mb-4">🌍</div>
+              <h3 className="font-semibold text-gray-900 mb-2">Global Network</h3>
+              <p className="text-gray-600">Direct connections with producers and suppliers worldwide</p>
             </div>
-            <div className="p-6 bg-blue-500 rounded-xl transform transition duration-300 hover:-translate-y-2">
-              <div className="text-4xl mb-3">🇪🇺</div>
-              <h3 className="font-semibold">Europe</h3>
-              <p className="text-blue-100 text-sm mt-2">UK, Germany, France, Italy</p>
+            <div className="text-center p-6 bg-amber-50 rounded-2xl">
+              <div className="text-3xl mb-4">✅</div>
+              <h3 className="font-semibold text-gray-900 mb-2">Quality Assurance</h3>
+              <p className="text-gray-600">Rigorous quality checks and food safety certifications</p>
             </div>
-            <div className="p-6 bg-blue-500 rounded-xl transform transition duration-300 hover:-translate-y-2">
-              <div className="text-4xl mb-3">🌏</div>
-              <h3 className="font-semibold">Asia</h3>
-              <p className="text-blue-100 text-sm mt-2">China, Japan, India, Singapore</p>
-            </div>
-            <div className="p-6 bg-blue-500 rounded-xl transform transition duration-300 hover:-translate-y-2">
-              <div className="text-4xl mb-3">🌍</div>
-              <h3 className="font-semibold">Middle East & Africa</h3>
-              <p className="text-blue-100 text-sm mt-2">UAE, Saudi Arabia, South Africa</p>
+            <div className="text-center p-6 bg-orange-50 rounded-2xl">
+              <div className="text-3xl mb-4">🚚</div>
+              <h3 className="font-semibold text-gray-900 mb-2">Fast Logistics</h3>
+              <p className="text-gray-600">Efficient supply chain with temperature-controlled shipping</p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-10 text-white">
-            <h2 className="text-3xl font-bold mb-6">Ready to Expand Your Global Reach?</h2>
-            <p className="text-blue-100 text-xl mb-10 max-w-2xl mx-auto">
-              Let our experts handle your import/export needs while you focus on growing your business
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="px-8 py-4 bg-white text-blue-700 font-semibold rounded-lg transition duration-300 hover:bg-blue-50 hover:shadow-lg">
-                Get a Free Consultation
-              </button>
-              <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg transition duration-300 hover:bg-white hover:text-blue-600">
-                Request a Quote
-              </button>
-            </div>
+        {/* CTA Section */}
+        <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 text-white text-center">
+          <h2 className="text-3xl font-bold mb-4">Start Trading Today</h2>
+          <p className="text-orange-100 text-lg mb-6">
+            Join hundreds of satisfied clients in global food trading
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
+              📞 Get Quote
+            </button>
+            <button className="bg-transparent border-2 border-white hover:bg-white hover:text-orange-600 px-8 py-3 rounded-xl font-semibold text-lg transition duration-300">
+              💼 Become Partner
+            </button>
           </div>
         </div>
-      </section>
-
-      <style jsx>{`
-        .bg-pattern {
-          background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-      `}</style>
+      </div>
     </div>
   );
 }
