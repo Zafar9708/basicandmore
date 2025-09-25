@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata = {
-  title: 'Box&Bag - Gloabl Trade Solutions',
+  title: 'Basic&More inc - General and Food Trading Solutions',
   description: 'Box&Bag  provides comprehensive financial services including bookkeeping, tax preparation, financial consulting, and strategic business advisory.',
   keywords: 'Box&Bag, trading services, bookkeeping, tax preparation, financial consulting, business advisory',
   robots: 'index, follow',
