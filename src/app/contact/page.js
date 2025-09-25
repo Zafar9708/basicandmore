@@ -38,8 +38,8 @@ export default function ContactUs() {
     {
       icon: 'fas fa-map-marker-alt',
       title: 'Visit Us',
-      details: 'Trade Center District',
-      description: 'Dubai, United Arab Emirates',
+      // details: 'Trade Center District',
+      description: '1590 S Milliken Ave #G, Ontario, CA 91761 ,USA',
       timing: 'By appointment',
       color: 'from-orange-500 to-amber-500',
       action: '#'
@@ -66,12 +66,12 @@ export default function ContactUs() {
 
   const globalOffices = [
     {
-      country: 'UAE',
-      city: 'Dubai',
-      flag: '🇦🇪',
-      address: 'Trade Center District, Dubai',
+      country: 'USA',
+      city: 'Ontario',
+      flag: 'US',
+      address: '1590 S Milliken Ave #G, Ontario, CA 91761 ,USA',
       phone: '+971 4 123 4567',
-      email: 'dubai@basicandmoreinc.com'
+      email: 'usa@basicandmoreinc.com'
     },
     {
       country: 'Saudi Arabia',

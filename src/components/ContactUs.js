@@ -94,8 +94,8 @@ export default function ContactUs() {
     {
       icon: 'fas fa-map-marker-alt',
       title: 'Visit Us',
-      details: '123 Trade Center, Business District',
-      description: 'Dubai, UAE',
+      details: '1590 S Millikken Ave #G Ontario,CA 91761',
+      description: 'Ontario, USA',
       color: 'from-orange-500 to-amber-500'
     },
     {
@@ -372,7 +372,7 @@ export default function ContactUs() {
                   <i className="fas fa-map-marker-alt text-orange-500 mr-3"></i>
                   <div>
                     <div className="font-semibold text-gray-900">Head Office</div>
-                    <div className="text-gray-600">Dubai, UAE</div>
+                    <div className="text-gray-600">Ontario, USA</div>
                   </div>
                 </div>
                 <div className="flex items-center">
